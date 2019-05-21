@@ -164,3 +164,116 @@ function selectInterface(name) {
     console.log(name.firstName + '--' + name.lastName);
 }
 selectInterface({ firstName: '海天' });
+function ajax(config) {
+    var xhr = new XMLHttpRequest();
+    xhr.open(config.type, config.url, true);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            if (config.dataType == 'json') {
+                console.log(JSON.parse(xhr.responseText));
+            }
+            console.log('success');
+        }
+    };
+    xhr.send(config.data);
+}
+var md5;
+md5 = function (key, value) {
+    return key + value;
+};
+console.log(md5('key-', '-value'));
+var arr = ['aaa', 'bbb', 12];
+console.log(arr[0]);
+var arrobj = { name: 'jon', age: 22 };
+var interDog = /** @class */ (function () {
+    function interDog(name) {
+        this.name = name;
+    }
+    interDog.prototype.eat = function () {
+        console.log(this.name + '--实现接口');
+    };
+    return interDog;
+}());
+var mydog = new interDog('jee');
+mydog.eat();
+var Pupil = /** @class */ (function () {
+    function Pupil(name) {
+        this.name = name;
+    }
+    Pupil.prototype.reading = function () {
+        console.log('pupil---read--' + this.name);
+    };
+    return Pupil;
+}());
+var MiddleStudent = /** @class */ (function (_super) {
+    __extends(MiddleStudent, _super);
+    function MiddleStudent(name, age) {
+        var _this = _super.call(this, name) || this;
+        _this.age = age;
+        return _this;
+    }
+    MiddleStudent.prototype.speech = function () {
+        console.log('speech--' + this.name);
+    };
+    MiddleStudent.prototype.homeWork = function () {
+        console.log('i am' + this.name + ',' + this.age + 'years old');
+    };
+    return MiddleStudent;
+}(Pupil));
+var mideleStu = new MiddleStudent('zhangsan', 12);
+mideleStu.speech();
+mideleStu.reading();
+mideleStu.homeWork();
+// 泛型 -- 解决类、接口、方法的复用性。以及对不特定数据类型的支持
+function getData1(value) {
+    // T 表示泛型，具体什么类型是调用方法的时候决定的
+    console.log(value);
+    return value;
+}
+getData1('124');
+function getData2(value) {
+    console.log(value);
+    return '2323';
+}
+getData2(222);
+// 泛型类：
+var MinClass = /** @class */ (function () {
+    function MinClass() {
+        this.list = [];
+    }
+    MinClass.prototype.add = function (num) {
+        this.list.push(num);
+    };
+    MinClass.prototype.getMin = function () {
+        var minMin = this.list[0];
+        for (var i = 0; i < this.list.length; i++) {
+            if (minMin > this.list[i]) {
+                minMin = this.list[i];
+            }
+        }
+        return minMin;
+    };
+    return MinClass;
+}());
+// 实例化类，并且指定了类的T 代表的类型是number
+var min_number = new MinClass();
+min_number.add(-1);
+min_number.add(2);
+min_number.add(1);
+min_number.add(0);
+var min_string = new MinClass();
+console.log(min_number.getMin());
+min_string.add('a');
+min_string.add('c');
+min_string.add('b');
+console.log(min_string.getMin());
+var setData = function (value1, value2) {
+    console.log(value1, value2 + '--泛型接口');
+    return value1;
+};
+setData('T1', 'T2');
+var setData2 = function (value) {
+    console.log(value);
+    return value;
+};
+setData2('fanxing T2');

@@ -210,8 +210,219 @@ function selectInterface(name:MyName):void{
 selectInterface({firstName:'海天'})
 
 
+// 接口 实现ajax
+
+interface ConfigAjax{
+    type:string;
+    url:string;
+    data?:string;
+    dataType:string
+
+}
+
+function ajax(config:ConfigAjax){
+    let xhr=new XMLHttpRequest();
+    xhr.open(config.type,config.url,true);
+    xhr.onreadystatechange=function(){
+        if(xhr.readyState==4 && xhr.status==200){
+            if(config.dataType=='json'){
+                console.log(JSON.parse(xhr.responseText))
+            }
+            console.log('success');
+            
+        }
+    }
+    xhr.send(config.data);
+}
+
+// 函数类型接口，对传入函数的参数和返回值进行约束
+
+
+interface encrypt{
+    (key:string,value:string):string
+}
+
+let md5:encrypt;
+
+md5=function(key:string,value:string){
+    return key+value
+}
+
+console.log(md5('key-','-value'));
+
+
+// 可索引接口 --对数组对象的约束 --不常用
+
+interface UserArr{
+    [index:number]:string|number
+}
+
+let arr:UserArr=['aaa','bbb',12];
+
+console.log(arr[0]);
+
+interface userObj{
+    [index:string]:string|number
+}
+
+let arrobj:userObj={name:'jon',age:22}
+
+// 类类型的接口  -- 对类的约束，和抽象类类似
+
+
+interface AnimalInterface{
+    name:string;
+    eat(food:string):void
+}
+
+class interDog implements AnimalInterface{
+    name:string;
+
+    constructor(name:string){
+        this.name=name
+    }
+
+    eat(){ // TEMP: 可以不传参数
+        console.log(this.name+'--实现接口');
+        
+    }
+}
+
+
+var mydog=new interDog('jee');
+
+mydog.eat()
+
+// 接口的扩展 接口可继承接口
+
+
+interface Teacher{
+    speech():void;
+}
+
+interface Student extends Teacher{
+    homeWork():void
+}
+
+class Pupil{
+    public name:string;
+    constructor(name:string){
+        this.name=name
+    }
+    reading():void{
+        console.log('pupil---read--'+this.name);
+        
+    }
+}
+
+class MiddleStudent extends Pupil implements Student{
+    public age:number;
+    constructor(name:string,age:number){
+        super(name);
+        this.age=age;
+    }
+    speech(){
+        console.log('speech--'+this.name);
+        
+    }
+    homeWork(){
+        console.log('i am'+this.name+','+this.age+'years old');
+        
+    }
+}
+
+let mideleStu=new MiddleStudent('zhangsan',12);
+
+mideleStu.speech();
+mideleStu.reading();
+mideleStu.homeWork();
+
+
+// 泛型 -- 解决类、接口、方法的复用性。以及对不特定数据类型的支持
+        
+function getData1<T>(value:T):T{
+
+    // T 表示泛型，具体什么类型是调用方法的时候决定的
+    console.log(value);
+    
+    return value
+}
+
+getData1<string>('124');
+
+function getData2<T>(value:T):any{
+    console.log(value)
+    return '2323'
+}
+getData2<number>(222);
+
+// 泛型类：
+class MinClass<T>{
+    public list:T[]=[];
+
+    add(num:T){
+        this.list.push(num)
+    }
+
+    getMin():T{
+        let minMin = this.list[0];
+        for(let i=0;i<this.list.length;i++){
+            if(minMin>this.list[i]){
+                minMin=this.list[i]
+            }
+        }
+
+        return minMin
+    }
+}
+
+// 实例化类，并且指定了类的T 代表的类型是number
+var min_number=new MinClass<number>();
+
+min_number.add(-1);
+min_number.add(2);
+min_number.add(1);
+min_number.add(0);
+
+
+var min_string= new MinClass<string>();
+console.log(min_number.getMin());
 
 
 
+min_string.add('a');
+min_string.add('c');
+min_string.add('b');
+
+
+console.log(min_string.getMin());
+
+// 泛型接口
+
+// 方法一
+interface ConfigT{
+    <T>(value1:T,value2:T):T;
+}
+
+let setData:ConfigT=function<T>(value1:T,value2:T):T{
+    console.log(value1,value2+'--泛型接口');
+    
+    return value1
+}
+
+setData<string>('T1','T2');
+
+// 方法二
+
+interface ConfigT2<T>{
+    (value:T):T
+}
+
+let setData2:ConfigT2<string>=function<T>(value:T){
+    console.log(value);
+    return value
+}
+
+setData2('fanxing T2')
 
 
