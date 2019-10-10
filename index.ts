@@ -426,3 +426,4 @@ let setData2:ConfigT2<string>=function<T>(value:T){
 setData2('fanxing T2')
 
 
+
