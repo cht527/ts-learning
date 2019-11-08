@@ -37,3 +37,24 @@ myStack.enter('d');
 console.log(myQueue.data);
 console.log(myStack.data);
 
+// ---- is
+interface ISelfDefine{
+    a:string
+}
+interface ISelfDefine2{
+    a:string[]
+}
+const isSomeType =(arg:ISelfDefine|ISelfDefine2):arg is ISelfDefine=>{
+    return typeof(arg.a) === 'string' 
+}
+
+const testNum={a:['222']};
+console.log(isSomeType(testNum));
+
+
+// -- Map 
+
+interface IMap<T>{
+    [key:string]:T
+}
+

@@ -37,3 +37,8 @@ myStack.enter('c');
 myStack.enter('d');
 console.log(myQueue.data);
 console.log(myStack.data);
+var isSomeType = function (arg) {
+    return typeof (arg.a) === 'string';
+};
+var testNum = { a: ['222'] };
+console.log(isSomeType(testNum));
