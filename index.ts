@@ -168,7 +168,6 @@ abstract class Parent{
     }
     abstract run():void;
 }
-
 class Child extends Parent{
     constructor(name:string){
         super(name)

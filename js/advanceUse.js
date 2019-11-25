@@ -1,44 +1,50 @@
 "use strict";
-var QueueTs = /** @class */ (function () {
-    function QueueTs() {
+class QueueTs {
+    constructor() {
         this.data = [];
     }
-    QueueTs.prototype.enter = function (member) {
+    enter(member) {
         this.data.push(member);
-    };
-    QueueTs.prototype.out = function () {
+    }
+    out() {
         this.data.shift();
-    };
-    QueueTs.prototype.get = function () {
+    }
+    get() {
         return this.data;
-    };
-    return QueueTs;
-}());
-var StackTs = /** @class */ (function () {
-    function StackTs() {
+    }
+}
+class StackTs {
+    constructor() {
         this.data = [];
     }
-    StackTs.prototype.enter = function (member) {
+    enter(member) {
         this.data.push(member);
-    };
-    StackTs.prototype.out = function () {
+    }
+    out() {
         this.data.pop();
-    };
-    StackTs.prototype.get = function () {
+    }
+    get() {
         return this.data;
-    };
-    return StackTs;
-}());
-var myQueue = new QueueTs();
-var myStack = new StackTs();
+    }
+}
+let myQueue = new QueueTs();
+let myStack = new StackTs();
 myQueue.enter({ a: 1 });
 myQueue.enter({ b: 2 });
 myStack.enter('c');
 myStack.enter('d');
 console.log(myQueue.data);
 console.log(myStack.data);
-var isSomeType = function (arg) {
+const isSomeType = (arg) => {
     return typeof (arg.a) === 'string';
 };
-var testNum = { a: ['222'] };
+const testNum = { a: ['222'] };
 console.log(isSomeType(testNum));
+let o1 = {
+    a: '1'
+};
+let o2 = {
+    b: 2
+};
+let o3 = Object.assign({}, o1, o2);
+console.log(o3);

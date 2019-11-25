@@ -58,3 +58,20 @@ interface IMap<T>{
     [key:string]:T
 }
 
+// 交叉类型
+interface IObj1{
+    a:string
+}
+interface IObj2{
+    b:number
+}
+let o1:IObj1={
+    a:'1'
+}
+let o2:IObj2={
+    b:2
+}
+let o3:IObj1 & IObj2=Object.assign({},o1,o2);
+
+console.log(o3);
+
