@@ -75,3 +75,22 @@ let o3:IObj1 & IObj2=Object.assign({},o1,o2);
 
 console.log(o3);
 
+// 
+const testArr=[1,2,3,4,4,2,5,3,23,3,345,3,9,2];
+const transArrToMap = (arr:number[]) =>{
+    let map = new Map<number,number>();
+    arr.forEach((item)=>{
+        if(map.has(item)){
+            let value = map.get(item);
+            map.set(item,value!+1)
+        }else{
+            map.set(item,1)
+        }
+    });
+
+    [...map.entries()].map((item)=>{
+        console.log(`${item[0]} has ${item[1]} times`  );
+        
+    })
+}
+transArrToMap(testArr)
