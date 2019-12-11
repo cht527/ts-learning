@@ -1,6 +1,13 @@
+/*
+ * @Author: your name
+ * @Date: 2019-09-28 00:23:56
+ * @LastEditTime: 2019-12-11 14:56:57
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: /ts-learning/rc-hooks/date/tokens/month.ts
+ */
 /**
  * @file month 月相关方法
- * @author Yu Zong(liuxuanzy@qq.com)
  */
 
 import {createEnumConverter, createNumberConverter} from '../convert';

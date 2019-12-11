@@ -1,6 +1,5 @@
 /**
  * @file convert 日期转换
- * @author Yu Zong(liuxuanzy@qq.com)
  */
 
 import {padding} from '../util';

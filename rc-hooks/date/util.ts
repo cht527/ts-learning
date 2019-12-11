@@ -1,6 +1,5 @@
 /**
  * @file util 工具函数
- * @author Yu Zong(liuxuanzy@qq.com)
  */
 
 import {daysInMonth} from './tokens/month';

@@ -1,6 +1,5 @@
 /**
  * @file compare 日期比较
- * @author Yu Zong(liuxuanzy@qq.com)
  */
 
 import {weekOfYear} from './tokens/week';

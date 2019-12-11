@@ -1,7 +1,12 @@
-/**
- * @file cubicBezier.ts
- * @author wuqi57(441984145@qq.com)
+/*
+ * @Author: your name
+ * @Date: 2019-09-28 00:23:56
+ * @LastEditTime: 2019-12-11 14:56:36
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: /ts-learning/rc-hooks/animate/cubicBezier.ts
  */
+
 
 const ZERO_LIMIT = 1e-6;
 

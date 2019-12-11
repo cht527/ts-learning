@@ -1,7 +1,3 @@
-/**
- * @file util 工具函数
- * @author Yu Zong(liuxuanzy@qq.com)
- */
 
 import {FunctionAny, FunctionParams} from '../types';
 

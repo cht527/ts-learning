@@ -1,6 +1,13 @@
+/*
+ * @Author: your name
+ * @Date: 2019-09-28 00:23:56
+ * @LastEditTime: 2019-12-11 14:56:49
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: /ts-learning/rc-hooks/date/tokens/date.ts
+ */
 /**
  * @file date 日相关方法
- * @author Yu Zong(liuxuanzy@qq.com)
  */
 import {createNumberConverter} from '../convert';
 import {daysInMonth} from './month';

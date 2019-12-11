@@ -1,6 +1,5 @@
 /**
  * @file day 星期相关方法
- * @author Yu Zong(liuxuanzy@qq.com)
  */
 
 import {createEnumConverter, createNumberConverter} from '../convert';

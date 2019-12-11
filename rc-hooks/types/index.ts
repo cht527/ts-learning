@@ -1,7 +1,12 @@
-/**
- * @file types 常用类型工具
- * @author Yu Zong(liuxuanzy@qq.com)
+/*
+ * @Author: your name
+ * @Date: 2019-11-20 22:16:16
+ * @LastEditTime: 2019-12-11 14:56:19
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: /ts-learning/rc-hooks/types/index.ts
  */
+
 
 // 提取所有没在定义中的T属性，并追加到T里面
 export type UnionOmit<T, K> = T & Omit<K, keyof T>;

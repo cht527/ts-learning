@@ -1,6 +1,5 @@
 /**
  * @file locale 本地语言
- * @author Yu Zong(liuxuanzy@qq.com)
  */
 
 import {IDateLocale} from '../types';

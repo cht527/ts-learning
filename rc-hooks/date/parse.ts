@@ -1,6 +1,5 @@
 /**
  * @file parse 将日期字符串处理成日期对象
- * @author Yu Zong(liuxuanzy@qq.com)
  */
 
 import {IDateLocale} from '../types';
