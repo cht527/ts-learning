@@ -338,7 +338,8 @@ mideleStu.homeWork();
 
 
 // 泛型 -- 解决类、接口、方法的复用性。以及对不特定数据类型的支持
-        
+
+
 function getData1<T>(value:T):T{
 
     // T 表示泛型，具体什么类型是调用方法的时候决定的
@@ -409,7 +410,7 @@ let setData:ConfigT=function<T>(value1:T,value2:T):T{
     return value1
 }
 
-setData<string>('T1','T2');
+setData<string>('T1','T@');
 
 // 方法二
 
