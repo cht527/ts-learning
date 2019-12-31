@@ -1,3 +1,13 @@
+import { type } from "./rc-hooks";
+
+/*
+ * @Author: your name
+ * @Date: 2019-12-11 14:53:12
+ * @LastEditTime : 2019-12-31 16:03:18
+ * @LastEditors  : Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /ts-learning/advanceUse.ts
+ */
 class QueueTs<T>{
     public data:T[]= [];
     enter(member:T){
@@ -37,6 +47,7 @@ myStack.enter('d');
 console.log(myQueue.data);
 console.log(myStack.data);
 
+
 // ---- is
 interface ISelfDefine{
     a:string
@@ -75,7 +86,7 @@ let o3:IObj1 & IObj2=Object.assign({},o1,o2);
 
 console.log(o3);
 
-// 
+//  
 const testArr=[1,2,3,4,4,2,5,3,23,3,345,3,9,2];
 const transArrToMap = (arr:number[]) =>{
     let map = new Map<number,number>();
@@ -93,4 +104,59 @@ const transArrToMap = (arr:number[]) =>{
         
     })
 }
-transArrToMap(testArr)
+transArrToMap(testArr);
+
+
+// 1\ Partial
+
+type objPartial={
+    a:'avalue',
+    b:'bvalue'
+}
+
+type TPartial<T>={
+    [P in keyof T]?:T[P] // TIP: 可以已有非必选项
+}
+
+const testPartialValue:TPartial<objPartial>={
+    a:'avalue',
+   // b:'bvalue', 
+}
+
+// 2\ Requierd
+
+type TRequired<T>={
+    [P in keyof T]-?:T[P] // TIP: 全部必选
+}
+
+const testRequiredValue:TRequired<objPartial>={
+    a:'avalue',
+    b:'bvalue'
+}
+
+// Record 
+
+type TAnimal='dog'|'cat';
+type TAnimalObj={
+    name:string,
+    age:number
+}
+
+type TRecord<K extends string,T>={
+    [P in K]:T
+}
+
+const testRecordVaue:TRecord<TAnimal,TAnimalObj>={
+    dog:{
+        name:'dog',
+        age:1
+    },
+    cat:{
+        name:'cat',
+        age:2
+    }
+}
+
+
+
+
