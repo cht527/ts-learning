@@ -1,4 +1,13 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+/*
+ * @Author: your name
+ * @Date: 2019-12-11 14:53:12
+ * @LastEditTime : 2019-12-31 16:03:18
+ * @LastEditors  : Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /ts-learning/advanceUse.ts
+ */
 class QueueTs {
     constructor() {
         this.data = [];
@@ -48,7 +57,7 @@ let o2 = {
 };
 let o3 = Object.assign({}, o1, o2);
 console.log(o3);
-// 
+//  
 const testArr = [1, 2, 3, 4, 4, 2, 5, 3, 23, 3, 345, 3, 9, 2];
 const transArrToMap = (arr) => {
     let map = new Map();
@@ -66,3 +75,20 @@ const transArrToMap = (arr) => {
     });
 };
 transArrToMap(testArr);
+const testPartialValue = {
+    a: 'avalue',
+};
+const testRequiredValue = {
+    a: 'avalue',
+    b: 'bvalue'
+};
+const testRecordVaue = {
+    dog: {
+        name: 'dog',
+        age: 1
+    },
+    cat: {
+        name: 'cat',
+        age: 2
+    }
+};

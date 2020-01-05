@@ -241,7 +241,7 @@ let setData = function (value1, value2) {
     console.log(value1, value2 + '--泛型接口');
     return value1;
 };
-setData('T1', 'T2');
+setData('T1', 'T@');
 let setData2 = function (value) {
     console.log(value);
     return value;
