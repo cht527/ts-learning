@@ -3,7 +3,7 @@ import { type } from "./rc-hooks";
 /*
  * @Author: your name
  * @Date: 2019-12-11 14:53:12
- * @LastEditTime : 2019-12-31 16:03:18
+ * @LastEditTime : 2020-01-15 17:25:24
  * @LastEditors  : Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /ts-learning/advanceUse.ts
@@ -107,7 +107,7 @@ const transArrToMap = (arr:number[]) =>{
 transArrToMap(testArr);
 
 
-// 1\ Partial
+//  Partial
 
 type objPartial={
     a:'avalue',
@@ -118,12 +118,38 @@ type TPartial<T>={
     [P in keyof T]?:T[P] // TIP: 可以已有非必选项
 }
 
+export type PowerPartial<T> = {
+    // 如果是 object，则递归类型
+   [U in keyof T]?: T[U] extends object
+     ? PowerPartial<T[U]>
+     : T[U]
+};
+
 const testPartialValue:TPartial<objPartial>={
     a:'avalue',
    // b:'bvalue', 
 }
 
-// 2\ Requierd
+// Pick
+type TTestPick= objPartial & {
+    c:'cvalue'
+}
+
+const a:TTestPick={
+    a:'avalue',
+    b:'bvalue',
+    c:'cvalue'
+
+}
+type TPick<T,K extends keyof T>={
+    [P in K]:T[P]
+}
+
+const testPick:TPick<objPartial,>=a
+
+
+
+// Requierd
 
 type TRequired<T>={
     [P in keyof T]-?:T[P] // TIP: 全部必选
@@ -157,6 +183,21 @@ const testRecordVaue:TRecord<TAnimal,TAnimalObj>={
     }
 }
 
+
+// Exclude 只保留T中可分配给U的值
+
+type TExclude<T,U>= T extends U ? never : T;
+type THouse={
+    window:string,
+    door:string
+}
+type TRoom={
+    window:string
+}
+
+const testExclude:TExclude<TRoom,THouse>={
+    window:'d'
+}
 
 
 
