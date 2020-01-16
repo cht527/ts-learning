@@ -3,7 +3,7 @@ import { type } from "./rc-hooks";
 /*
  * @Author: your name
  * @Date: 2019-12-11 14:53:12
- * @LastEditTime : 2020-01-15 17:25:24
+ * @LastEditTime : 2020-01-16 10:08:57
  * @LastEditors  : Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /ts-learning/advanceUse.ts
@@ -110,14 +110,26 @@ transArrToMap(testArr);
 //  Partial
 
 type objPartial={
-    a:'avalue',
-    b:'bvalue'
+    a:string,
+    b:string
 }
 
 type TPartial<T>={
     [P in keyof T]?:T[P] // TIP: 可以已有非必选项
 }
 
+// Requierd
+
+type TRequired<T>={
+    [P in keyof T]-?:T[P] // TIP: 全部必选
+}
+
+const testRequiredValue:TRequired<objPartial>={
+    a:'avalue',
+    b:'bvalue'
+}
+
+// PowerPartial -- 多层
 export type PowerPartial<T> = {
     // 如果是 object，则递归类型
    [U in keyof T]?: T[U] extends object
@@ -132,7 +144,7 @@ const testPartialValue:TPartial<objPartial>={
 
 // Pick
 type TTestPick= objPartial & {
-    c:'cvalue'
+    c:string
 }
 
 const a:TTestPick={
@@ -145,20 +157,7 @@ type TPick<T,K extends keyof T>={
     [P in K]:T[P]
 }
 
-const testPick:TPick<objPartial,>=a
-
-
-
-// Requierd
-
-type TRequired<T>={
-    [P in keyof T]-?:T[P] // TIP: 全部必选
-}
-
-const testRequiredValue:TRequired<objPartial>={
-    a:'avalue',
-    b:'bvalue'
-}
+const testPick:TPick<objPartial,'a'>=a
 
 // Record 
 
@@ -183,21 +182,51 @@ const testRecordVaue:TRecord<TAnimal,TAnimalObj>={
     }
 }
 
-
-// Exclude 只保留T中可分配给U的值
-
+// Exclude T中排除U
 type TExclude<T,U>= T extends U ? never : T;
-type THouse={
-    window:string,
-    door:string
-}
-type TRoom={
-    window:string
+
+type TNum1=1|2|3;
+type TNum2=2|3|4;
+
+const testExclude:TExclude<TNum1, TNum2>=1
+
+
+// Omit 
+interface THouse{
+    window:string;
+    door:string;
+    loft:string;
 }
 
-const testExclude:TExclude<TRoom,THouse>={
-    window:'d'
+interface TRoom{
+    window:string;
+    door:string;
+    kichen:string;
 }
+
+type TOmit<T,K>=Pick<T,TExclude<keyof T,K>>
+
+const testOmit:TOmit<THouse,keyof TRoom>={
+    loft:'l'
+}
+
+// Readonly
+type readonlyObj={
+    a:string,
+    b:string
+}
+
+type TReadonly<T> ={
+    readonly [P in keyof T]:T[P]
+}
+
+const testReadonly:TReadonly<readonlyObj>={
+    a:'1',
+    b:'2'
+}
+
+
+
 
 
 
