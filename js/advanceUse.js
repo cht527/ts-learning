@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /*
  * @Author: your name
  * @Date: 2019-12-11 14:53:12
- * @LastEditTime : 2019-12-31 16:03:18
+ * @LastEditTime : 2020-02-02 19:50:34
  * @LastEditors  : Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /ts-learning/advanceUse.ts
@@ -49,6 +49,8 @@ const isSomeType = (arg) => {
 };
 const testNum = { a: ['222'] };
 console.log(isSomeType(testNum));
+;
+;
 let o1 = {
     a: '1'
 };
@@ -75,12 +77,20 @@ const transArrToMap = (arr) => {
     });
 };
 transArrToMap(testArr);
-const testPartialValue = {
-    a: 'avalue',
-};
 const testRequiredValue = {
     a: 'avalue',
     b: 'bvalue'
+};
+const testPartialValue = {
+    a: 'avalue',
+};
+const a = {
+    a: 'avalue',
+    b: 'bvalue',
+    c: 'cvalue'
+};
+const testPick = {
+    a: 'value',
 };
 const testRecordVaue = {
     dog: {
@@ -92,3 +102,21 @@ const testRecordVaue = {
         age: 2
     }
 };
+const testExclude = 1;
+const testOmit = {
+    loft: 'l'
+};
+const testReadonly = {
+    a: '1',
+    b: '2'
+};
+// ------------------------实践------------------------------
+// 类型约束
+const dataDemo = {
+    prop1: 'prop1',
+    prop2: 2
+};
+function getProps(obj, prop) {
+    return obj[prop];
+}
+const prop = getProps(dataDemo, 'prop2');

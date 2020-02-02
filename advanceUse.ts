@@ -3,7 +3,7 @@ import { type } from "./rc-hooks";
 /*
  * @Author: your name
  * @Date: 2019-12-11 14:53:12
- * @LastEditTime : 2020-01-16 10:08:57
+ * @LastEditTime : 2020-02-02 19:50:34
  * @LastEditors  : Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /ts-learning/advanceUse.ts
@@ -68,6 +68,14 @@ console.log(isSomeType(testNum));
 interface IMap<T>{
     [key:string]:T
 }
+
+interface Dictionary<T> {
+  [index: string]: T;
+};
+
+interface NumericDictionary<T> {
+  [index: number]: T;
+};
 
 // 交叉类型
 interface IObj1{
@@ -157,7 +165,9 @@ type TPick<T,K extends keyof T>={
     [P in K]:T[P]
 }
 
-const testPick:TPick<objPartial,'a'>=a
+const testPick:TPick<objPartial,'a'>={
+    a:'value',
+}
 
 // Record 
 
@@ -224,6 +234,24 @@ const testReadonly:TReadonly<readonlyObj>={
     a:'1',
     b:'2'
 }
+
+// ------------------------实践------------------------------
+// 类型约束
+
+const dataDemo={
+    prop1:'prop1',
+    prop2:2
+}
+
+function getProps<T extends object,K extends keyof T>(obj:T,prop:K):T[K]{
+    return obj[prop]
+}
+
+const prop=getProps(dataDemo,'prop2')
+
+
+
+
 
 
 
