@@ -3,7 +3,7 @@ import { type } from "./rc-hooks";
 /*
  * @Author: your name
  * @Date: 2019-12-11 14:53:12
- * @LastEditTime : 2020-02-02 19:50:34
+ * @LastEditTime : 2020-02-05 10:41:43
  * @LastEditors  : Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /ts-learning/advanceUse.ts
@@ -247,7 +247,8 @@ function getProps<T extends object,K extends keyof T>(obj:T,prop:K):T[K]{
     return obj[prop]
 }
 
-const prop=getProps(dataDemo,'prop2')
+const prop=getProps(dataDemo,'prop2');
+
 
 
 
