@@ -3,8 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /*
  * @Author: your name
  * @Date: 2019-12-11 14:53:12
- * @LastEditTime : 2020-02-02 19:50:34
- * @LastEditors  : Please set LastEditors
+ * @LastEditTime: 2020-05-11 18:52:31
+ * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /ts-learning/advanceUse.ts
  */
@@ -77,6 +77,9 @@ const transArrToMap = (arr) => {
     });
 };
 transArrToMap(testArr);
+const testP = {
+    a: '1',
+};
 const testRequiredValue = {
     a: 'avalue',
     b: 'bvalue'
@@ -103,6 +106,7 @@ const testRecordVaue = {
     }
 };
 const testExclude = 1;
+const textExtract = 3; // or 2
 const testOmit = {
     loft: 'l'
 };
@@ -110,6 +114,9 @@ const testReadonly = {
     a: '1',
     b: '2'
 };
+const stringType = 'str';
+const infer_number = 1;
+const infer_number_string = 'string';
 // ------------------------实践------------------------------
 // 类型约束
 const dataDemo = {

@@ -3,8 +3,8 @@ import { type } from "./rc-hooks";
 /*
  * @Author: your name
  * @Date: 2019-12-11 14:53:12
- * @LastEditTime : 2020-02-05 10:41:43
- * @LastEditors  : Please set LastEditors
+ * @LastEditTime: 2020-05-11 18:52:31
+ * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /ts-learning/advanceUse.ts
  */
@@ -126,6 +126,10 @@ type TPartial<T>={
     [P in keyof T]?:T[P] // TIP: 可以已有非必选项
 }
 
+const testP:TPartial<objPartial>={
+    a:'1',
+}
+
 // Requierd
 
 type TRequired<T>={
@@ -201,6 +205,15 @@ type TNum2=2|3|4;
 const testExclude:TExclude<TNum1, TNum2>=1
 
 
+// Extract  
+
+type TExtract<T,U> = T extends U ? T: never;
+
+type TNum3=1|2|3;
+type TNum4=2|3|4;
+
+const textExtract:TExtract<TNum3,TNum4>=3 // or 2
+
 // Omit 
 interface THouse{
     window:string;
@@ -215,6 +228,7 @@ interface TRoom{
 }
 
 type TOmit<T,K>=Pick<T,TExclude<keyof T,K>>
+
 
 const testOmit:TOmit<THouse,keyof TRoom>={
     loft:'l'
@@ -235,6 +249,23 @@ const testReadonly:TReadonly<readonlyObj>={
     b:'2'
 }
 
+
+// infer
+type extractArrayType<T> = T extends (infer U)[] ? U :never;
+
+type InferArr=string[];
+
+const stringType:extractArrayType<InferArr>='str';
+
+
+type InferAB<T> = T extends {a:infer U,b:infer U} ? U :T;
+type InferABNumber = InferAB<{a:number,b:number}>;
+type InferABNumberString = InferAB<{a:number,b:string}>;
+const infer_number:InferABNumber=1;
+const infer_number_string:InferABNumberString='string'
+
+
+
 // ------------------------实践------------------------------
 // 类型约束
 
@@ -248,6 +279,8 @@ function getProps<T extends object,K extends keyof T>(obj:T,prop:K):T[K]{
 }
 
 const prop=getProps(dataDemo,'prop2');
+
+
 
 
 
