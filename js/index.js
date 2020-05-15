@@ -84,7 +84,8 @@ class Animal {
         console.log('bark');
     }
     think() {
-        console.log(`i have develope my ${this.brian}`);
+        console.log(`i have develop my ${this.brian}`);
+        return 'think';
     }
 }
 Animal.selfProp = 'selfProp';
@@ -93,7 +94,11 @@ class Cat extends Animal {
         super(eye, brain);
     }
     eat() {
-        console.log('cat eat fish');
+        const thinkStr = this.think();
+        console.log('cat eat fish and' + thinkStr);
+    }
+    miaomiao() {
+        console.log('miaomiao');
     }
 }
 class Dog extends Animal {
@@ -102,10 +107,10 @@ class Dog extends Animal {
     }
 }
 let animal = new Animal(2, 'brain');
-//console.log(animal.eye); 类外部无法访问 protected属性 
+// console.log(animal.eye); // 类外部无法访问 protected属性 
 let tom = new Cat(2, 'brain');
 tom.eat();
-//console.log(tom.brian); 子类无法访问 private 属性
+// console.log(tom.brian); // 子类无法访问 private 属性
 Animal.selfMethod();
 console.log(Animal.selfProp); //静态属性
 // 多态 父类定义一个方法不去实现，让继承它的子类，每个子类的不同的表现

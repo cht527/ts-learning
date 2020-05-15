@@ -109,20 +109,25 @@ class Animal{
     bark():void{
         console.log('bark')
     }
-    think():void{
-        console.log(`i have develope my ${this.brian}`);
-        
+    protected think():string{
+        console.log(`i have develop my ${this.brian}`);
+        return 'think'
     }
 }
 class Cat extends Animal{
     constructor(eye:number,brain:string){
         super(eye,brain)
     }
+
     eat():void{
-        console.log('cat eat fish');
+        const thinkStr=this.think();
+        console.log('cat eat fish and'+thinkStr);
         
     }
-   
+
+    protected miaomiao():void{
+        console.log('miaomiao')
+    }
 }
 class Dog extends Animal{
     constructor(eye:number,brain:string){
@@ -131,13 +136,15 @@ class Dog extends Animal{
     
 }
 let animal = new Animal(2,'brain');
-//console.log(animal.eye); 类外部无法访问 protected属性 
+// console.log(animal.eye); // 类外部无法访问 protected属性 
 
 
 let tom =new Cat(2,'brain');
 
 tom.eat();
-//console.log(tom.brian); 子类无法访问 private 属性
+
+
+// console.log(tom.brian); // 子类无法访问 private 属性
 
 Animal.selfMethod();
 
