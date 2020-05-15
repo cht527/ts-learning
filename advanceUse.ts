@@ -3,7 +3,7 @@ import { type } from "./rc-hooks";
 /*
  * @Author: your name
  * @Date: 2019-12-11 14:53:12
- * @LastEditTime: 2020-05-11 18:52:31
+ * @LastEditTime: 2020-05-15 10:51:16
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /ts-learning/advanceUse.ts
@@ -278,17 +278,67 @@ function getProps<T extends object,K extends keyof T>(obj:T,prop:K):T[K]{
     return obj[prop]
 }
 
-const prop=getProps(dataDemo,'prop2');
+const prop=getProps(dataDemo,'prop1');
+
+
+// 类型的拓宽是所有出现的空类型和未定义类型都被类型 any 替换。
+let aa=undefined;
+let bb=null;
+
+// 交集
+
+type A={
+    name:string;
+    age:number
+}
+
+type B={
+    name:string;
+    weight:number
+}
+
+type A_B= A & B;
+
+const testAnd:Pick<A,'name'>={
+    name:'a',
+   // age:1,
+   // weight:1
+}
+
+enum YesNo{
+    Yes='1',
+    No='3'
+}
+
+type YesOrNo = keyof typeof YesNo
 
 
 
+type Readonly<T>={
+    readonly [key in keyof T]:T[key]
+}
+type aAndB={
+    a:string,
+    b:string
+}
+
+const readA:Readonly<aAndB>={
+    a:'d',
+    b:'c'
+}
+
+const readFun=<T>(obj:T):Readonly<T>=>{
+    return obj
+}
+
+const res=readFun<aAndB>(readA);
 
 
 
+interface StringIndexArray {
+    [index: string]: string;
+}
 
-
-
-
-
+type K1 = keyof StringIndexArray // type K1 = string | number
 
 

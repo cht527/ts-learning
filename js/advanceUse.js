@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /*
  * @Author: your name
  * @Date: 2019-12-11 14:53:12
- * @LastEditTime: 2020-05-11 18:52:31
+ * @LastEditTime: 2020-05-15 10:51:16
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /ts-learning/advanceUse.ts
@@ -126,4 +126,23 @@ const dataDemo = {
 function getProps(obj, prop) {
     return obj[prop];
 }
-const prop = getProps(dataDemo, 'prop2');
+const prop = getProps(dataDemo, 'prop1');
+// 类型的拓宽是所有出现的空类型和未定义类型都被类型 any 替换。
+let aa = undefined;
+let bb = null;
+const testAnd = {
+    name: 'a',
+};
+var YesNo;
+(function (YesNo) {
+    YesNo["Yes"] = "1";
+    YesNo["No"] = "3";
+})(YesNo || (YesNo = {}));
+const readA = {
+    a: 'd',
+    b: 'c'
+};
+const readFun = (obj) => {
+    return obj;
+};
+const res = readFun(readA);
