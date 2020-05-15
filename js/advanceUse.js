@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /*
  * @Author: your name
  * @Date: 2019-12-11 14:53:12
- * @LastEditTime: 2020-05-15 10:51:16
+ * @LastEditTime: 2020-05-15 14:33:20
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /ts-learning/advanceUse.ts
@@ -133,11 +133,6 @@ let bb = null;
 const testAnd = {
     name: 'a',
 };
-var YesNo;
-(function (YesNo) {
-    YesNo["Yes"] = "1";
-    YesNo["No"] = "3";
-})(YesNo || (YesNo = {}));
 const readA = {
     a: 'd',
     b: 'c'

@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-05-15 10:51:40
- * @LastEditTime: 2020-05-15 11:12:39
+ * @LastEditTime: 2020-05-15 14:32:36
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /ts-learning/event.ts
@@ -48,3 +48,6 @@
     })
     
  }
+
+
+ 

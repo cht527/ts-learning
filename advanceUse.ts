@@ -3,7 +3,7 @@ import { type } from "./rc-hooks";
 /*
  * @Author: your name
  * @Date: 2019-12-11 14:53:12
- * @LastEditTime: 2020-05-15 10:51:16
+ * @LastEditTime: 2020-05-15 14:33:20
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /ts-learning/advanceUse.ts
@@ -305,14 +305,6 @@ const testAnd:Pick<A,'name'>={
    // weight:1
 }
 
-enum YesNo{
-    Yes='1',
-    No='3'
-}
-
-type YesOrNo = keyof typeof YesNo
-
-
 
 type Readonly<T>={
     readonly [key in keyof T]:T[key]
@@ -332,13 +324,5 @@ const readFun=<T>(obj:T):Readonly<T>=>{
 }
 
 const res=readFun<aAndB>(readA);
-
-
-
-interface StringIndexArray {
-    [index: string]: string;
-}
-
-type K1 = keyof StringIndexArray // type K1 = string | number
 
 
