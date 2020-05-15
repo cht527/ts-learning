@@ -278,12 +278,11 @@ let arrobj:userObj={name:'jon',age:22}
 
 interface AnimalInterface{
     name:string;
-    eat(food:string):void
+    eat(food:string):void;
 }
 
 class interDog implements AnimalInterface{
     name:string;
-
     constructor(name:string){
         this.name=name
     }
@@ -297,7 +296,9 @@ class interDog implements AnimalInterface{
 
 var mydog=new interDog('jee');
 
-mydog.eat()
+mydog.eat();
+
+
 
 // 接口的扩展 接口可继承接口
 
@@ -431,6 +432,10 @@ let setData2:ConfigT2<string>=function<T>(value:T){
 }
 
 setData2('fanxing T2')
+
+// -----
+
+
 
 
 
