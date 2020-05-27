@@ -326,3 +326,6 @@ const readFun=<T>(obj:T):Readonly<T>=>{
 const res=readFun<aAndB>(readA);
 
 
+// -- 装饰器
+
+
