@@ -1,5 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 /*
  * @Author: your name
  * @Date: 2019-09-28 00:23:56
@@ -11,17 +9,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * @file year 年相关方法
  */
-const convert_1 = require("../convert");
-function isLeapYear(year) {
+import { createNumberConverter } from '../convert';
+export function isLeapYear(year) {
     return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
 }
-exports.isLeapYear = isLeapYear;
-function daysInYear(year) {
+export function daysInYear(year) {
     return isLeapYear(year) ? 366 : 365;
 }
-exports.daysInYear = daysInYear;
 // YYYY和YY
-convert_1.createNumberConverter({
+createNumberConverter({
     paddingFormat: 'YYYY',
     maxLength: 4,
     getter: date => date.getFullYear(),
@@ -33,7 +29,7 @@ convert_1.createNumberConverter({
     },
     field: 'year'
 });
-convert_1.createNumberConverter({
+createNumberConverter({
     paddingFormat: 'YY',
     maxLength: 2,
     getter: date => date.getFullYear(),

@@ -1,12 +1,10 @@
-"use strict";
 /**
  * @file parse 将日期字符串处理成日期对象
  */
-Object.defineProperty(exports, "__esModule", { value: true });
-const locale_1 = require("./locale");
-const week_1 = require("./tokens/week");
-const convert_1 = require("./convert");
-const date_1 = require("./tokens/date");
+import { getDateLocale } from './locale';
+import { buildFromWeek } from './tokens/week';
+import { CONVERTER_MAP, tokenizer } from './convert';
+import { buildFromDayOfYear } from './tokens/date';
 function createEmptyMatcher(token) {
     return str => {
         const matched = str.slice(0, token.length);
@@ -40,7 +38,7 @@ function buildDate(info, startDay) {
             return {
                 valid: true,
                 exact: true,
-                date: week_1.buildFromWeek(year, week, day, startDay)
+                date: buildFromWeek(year, week, day, startDay)
             };
         }
         // 使用DayOfYear生成
@@ -48,7 +46,7 @@ function buildDate(info, startDay) {
             return {
                 valid: true,
                 exact: true,
-                date: date_1.buildFromDayOfYear(year, dateOfYear)
+                date: buildFromDayOfYear(year, dateOfYear)
             };
         }
         // 如果只有月存在
@@ -64,7 +62,7 @@ function buildDate(info, startDay) {
             return {
                 valid: true,
                 exact: false,
-                date: week_1.buildFromWeek(year, week, 0, startDay)
+                date: buildFromWeek(year, week, 0, startDay)
             };
         }
         // 只有年的情况
@@ -81,11 +79,11 @@ function buildDate(info, startDay) {
         };
     }
 }
-function parseDate(str, format, locale, strict = false) {
+export function parseDate(str, format, locale, strict = false) {
     if (str == null || str === '') {
         return;
     }
-    const tokens = convert_1.tokenizer(format);
+    const tokens = tokenizer(format);
     let valid = true;
     let firstErrorPos = 0;
     let left = str;
@@ -94,22 +92,22 @@ function parseDate(str, format, locale, strict = false) {
         if (!valid) {
             return;
         }
-        const matchToken = convert_1.CONVERTER_MAP[token] ? convert_1.CONVERTER_MAP[token].matchToken : createEmptyMatcher(token);
-        const parseToken = convert_1.CONVERTER_MAP[token] ? convert_1.CONVERTER_MAP[token].parseToken : createEmptyParser();
-        const matched = matchToken(left, locale_1.getDateLocale(locale));
+        const matchToken = CONVERTER_MAP[token] ? CONVERTER_MAP[token].matchToken : createEmptyMatcher(token);
+        const parseToken = CONVERTER_MAP[token] ? CONVERTER_MAP[token].parseToken : createEmptyParser();
+        const matched = matchToken(left, getDateLocale(locale));
         if (matched === false) {
             valid = false;
             firstErrorPos = str.length - left.length;
             return;
         }
-        Object.assign(info, parseToken(matched, locale_1.getDateLocale(locale)));
+        Object.assign(info, parseToken(matched, getDateLocale(locale)));
         left = left.slice(matched.length);
     });
     if (!valid) {
         console.error(`parse date string error, format = ${format} str =${str} pos=${firstErrorPos}`);
         return;
     }
-    const result = buildDate(info, locale_1.getDateLocale(locale).startDay);
+    const result = buildDate(info, getDateLocale(locale).startDay);
     if (!result.valid) {
         console.error('parse date string error, format = ' + format + ' str =' + str + ' error=' + result.message);
         return;
@@ -121,8 +119,7 @@ function parseDate(str, format, locale, strict = false) {
     }
     return result.date;
 }
-exports.parseDate = parseDate;
-function parseDateArr(dateList, format, locale, strict) {
+export function parseDateArr(dateList, format, locale, strict) {
     const ret = [];
     dateList.forEach(date => {
         if (typeof date === 'string') {
@@ -137,4 +134,3 @@ function parseDateArr(dateList, format, locale, strict) {
     });
     return ret;
 }
-exports.parseDateArr = parseDateArr;

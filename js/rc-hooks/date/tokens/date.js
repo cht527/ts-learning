@@ -1,5 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 /*
  * @Author: your name
  * @Date: 2019-09-28 00:23:56
@@ -11,19 +9,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * @file date 日相关方法
  */
-const convert_1 = require("../convert");
-const month_1 = require("./month");
-exports.DATE_MILLISECONDS = 24 * 60 * 60 * 1000;
-function dayOfYear(date) {
+import { createNumberConverter } from '../convert';
+import { daysInMonth } from './month';
+export const DATE_MILLISECONDS = 24 * 60 * 60 * 1000;
+export function dayOfYear(date) {
     const start = new Date(date.getFullYear(), 0, 1);
     const end = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-    return Math.floor((Number(end) - Number(start)) / exports.DATE_MILLISECONDS) + 1;
+    return Math.floor((Number(end) - Number(start)) / DATE_MILLISECONDS) + 1;
 }
-exports.dayOfYear = dayOfYear;
-function buildFromDayOfYear(year, day) {
+export function buildFromDayOfYear(year, day) {
     let month = 0;
     while (month < 12) {
-        const monthDay = month_1.daysInMonth(year, month);
+        const monthDay = daysInMonth(year, month);
         if (monthDay >= day) {
             return new Date(year, month, day);
         }
@@ -32,8 +29,7 @@ function buildFromDayOfYear(year, day) {
     }
     throw new Error('day of year should < 365/366');
 }
-exports.buildFromDayOfYear = buildFromDayOfYear;
-convert_1.createNumberConverter({
+createNumberConverter({
     field: 'dateOfYear',
     format: 'DDD',
     paddingFormat: 'DDDD',
@@ -41,7 +37,7 @@ convert_1.createNumberConverter({
     getter: date => dayOfYear(date)
 });
 // DD 和 D
-convert_1.createNumberConverter({
+createNumberConverter({
     field: 'date',
     format: 'D',
     paddingFormat: 'DD',

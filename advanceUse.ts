@@ -1,9 +1,8 @@
-import { type } from "./rc-hooks";
 
 /*
  * @Author: your name
  * @Date: 2019-12-11 14:53:12
- * @LastEditTime: 2020-05-15 14:33:20
+ * @LastEditTime: 2020-06-01 17:59:19
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /ts-learning/advanceUse.ts

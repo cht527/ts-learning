@@ -1,11 +1,9 @@
-"use strict";
 /**
  * @file convert 日期转换
  */
-Object.defineProperty(exports, "__esModule", { value: true });
-const util_1 = require("../util");
+import { padding } from '../util/index';
 const TOKEN_REG = /(YYYY|YY|MMMM|MMM|MM|M|DDDD|DDD|DD|D|HH|H|hh|h|A|a|mm|m|ss|s|SSS|QQ|Q|WW|W|dddd|ddd|dd|d|.)/g;
-function tokenizer(format) {
+export function tokenizer(format) {
     const result = [];
     let matched = TOKEN_REG.exec(format);
     while (matched != null) {
@@ -14,15 +12,14 @@ function tokenizer(format) {
     }
     return result;
 }
-exports.tokenizer = tokenizer;
-exports.CONVERTER_MAP = {};
+export const CONVERTER_MAP = {};
 function defaultConverter(num) {
     return num;
 }
-function createNumberConverter(options) {
+export function createNumberConverter(options) {
     const { maxLength, field, getter, format, paddingFormat, converter = defaultConverter } = options;
     if (format != null) {
-        exports.CONVERTER_MAP[format] = {
+        CONVERTER_MAP[format] = {
             formatToken(date, locale) {
                 return String(getter(date, locale));
             },
@@ -42,9 +39,9 @@ function createNumberConverter(options) {
         };
     }
     if (paddingFormat != null) {
-        exports.CONVERTER_MAP[paddingFormat] = {
+        CONVERTER_MAP[paddingFormat] = {
             formatToken(date, locale) {
-                return util_1.padding(String(getter(date, locale)), maxLength);
+                return padding(String(getter(date, locale)), maxLength);
             },
             matchToken(str) {
                 const reg = new RegExp(`^(\\d{${maxLength}})`);
@@ -62,10 +59,9 @@ function createNumberConverter(options) {
         };
     }
 }
-exports.createNumberConverter = createNumberConverter;
-function createEnumConverter(options) {
+export function createEnumConverter(options) {
     const { format, field, getter, localeKey } = options;
-    exports.CONVERTER_MAP[format] = {
+    CONVERTER_MAP[format] = {
         formatToken(date, locale) {
             return locale[localeKey][getter(date)];
         },
@@ -85,4 +81,3 @@ function createEnumConverter(options) {
         }
     };
 }
-exports.createEnumConverter = createEnumConverter;

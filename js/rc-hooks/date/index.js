@@ -1,4 +1,3 @@
-"use strict";
 /*
  * @Author: your name
  * @Date: 2019-09-28 00:23:56
@@ -10,17 +9,13 @@
 /**
  * @file index 工具函数
  */
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__export(require("./util"));
-__export(require("./format"));
-__export(require("./parse"));
-__export(require("./compare"));
-__export(require("./tokens/date"));
-__export(require("./tokens/day"));
-__export(require("./tokens/month"));
-__export(require("./tokens/week"));
-__export(require("./tokens/year"));
-__export(require("./locale"));
+export * from './util';
+export * from './format';
+export * from './parse';
+export * from './compare';
+export * from './tokens/date';
+export * from './tokens/day';
+export * from './tokens/month';
+export * from './tokens/week';
+export * from './tokens/year';
+export * from './locale';
