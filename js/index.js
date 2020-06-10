@@ -503,4 +503,110 @@ function matchRoute(params, currentRoute) {
     //         };
     //     });
 }
-console.log(matchRoute(routes, '/yuntu_ng/market/benefit_analysis&/yuntu_ng/market/benefit_analysis/brand_benefit_tag'));
+function insertChild(datasource, item, floor) {
+    // 每2个是一级
+    if (String(item.value).length === floor * 2) {
+        // 同一级
+        datasource.push(item);
+    }
+    else {
+        // 不同级
+        const levelItem = datasource.find(data => String(data.value) === String(item.value).slice(0, floor * 2));
+        if (levelItem) {
+            if (!(Array.isArray(levelItem.children) && levelItem.children.length)) {
+                // 将上一级搞到下一级
+                levelItem.children = [
+                    {
+                        label: levelItem.label,
+                        value: levelItem.value
+                    }
+                ];
+            }
+            insertChild(levelItem.children, item, floor + 1);
+        }
+    }
+    return datasource;
+}
+function transIndustrySelectorData(data, isStaff = false) {
+    const sortedData = data.sort((a, b) => (+a.industry_id > +b.industry_id ? 1 : -1)); // 从小到大排列
+    let filteredData = sortedData.filter((item, idx) => idx === 0 || item.industry_id !== sortedData[idx - 1].industry_id); // 去个重
+    if (!isStaff && +filteredData[0].industry_id === 12) {
+        // 非内部的美妆用户
+        filteredData = filteredData.slice(0, 1);
+    }
+    const brandId = filteredData[0] && filteredData[0].brand_id;
+    const industryDatasource = [];
+    filteredData.forEach(item => {
+        insertChild(industryDatasource, { label: item.industry_name, value: item.industry_id }, 1);
+    });
+    const industrySeriesMap = {};
+    data.forEach(item => {
+        const series = {
+            label: item.series_name,
+            value: item.series_id
+        };
+        if (industrySeriesMap[item.industry_id]) {
+            industrySeriesMap[item.industry_id].push(series);
+        }
+        else {
+            industrySeriesMap[item.industry_id] = [series];
+        }
+    });
+    // 将与当前品牌相同的系列放到第一个
+    Object.keys(industrySeriesMap).forEach(industryId => {
+        const currentSeriesList = industrySeriesMap[industryId];
+        const brandItemIdx = currentSeriesList.findIndex(item => +item.value === +brandId);
+        if (brandItemIdx > -1) {
+            const reSortSeriesList = [
+                ...currentSeriesList.slice(brandItemIdx, brandItemIdx + 1),
+                ...currentSeriesList.slice(0, brandItemIdx),
+                ...currentSeriesList.slice(brandItemIdx + 1)
+            ];
+            industrySeriesMap[industryId] = reSortSeriesList;
+        }
+    });
+    const bigIndustry = {
+        value: filteredData.length ? filteredData[0].industry_id : -1,
+        label: filteredData.length ? filteredData[0].industry_name : ''
+    };
+    return {
+        industryDatasource,
+        bigIndustry,
+        industrySeriesMap
+    };
+}
+const brandData = [
+    {
+        "brand_id": 557430,
+        "brand_name": "L＇oreal/欧莱雅",
+        "series_id": 557430,
+        "series_name": "L＇oreal/欧莱雅",
+        "industry_id": 12,
+        "industry_name": "美妆"
+    },
+    {
+        "brand_id": 557430,
+        "brand_name": "L＇oreal/欧莱雅",
+        "series_id": 557430,
+        "series_name": "L＇oreal/欧莱雅",
+        "industry_id": 1201,
+        "industry_name": "彩妆/香水/美妆工具"
+    },
+    {
+        "brand_id": 557430,
+        "brand_name": "L＇oreal/欧莱雅",
+        "series_id": 557430,
+        "series_name": "L＇oreal/欧莱雅",
+        "industry_id": 1202,
+        "industry_name": "美容护肤/美体/精油"
+    },
+    {
+        "brand_id": 557430,
+        "brand_name": "L＇oreal/欧莱雅",
+        "series_id": 557430,
+        "series_name": "L＇oreal/欧莱雅",
+        "industry_id": 1203,
+        "industry_name": "美发护发/假发"
+    },
+];
+console.log(JSON.stringify(transIndustrySelectorData(brandData)));

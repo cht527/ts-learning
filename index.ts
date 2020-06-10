@@ -677,36 +677,10 @@ let routes = [
 ];
 
 
-function matchRoute(params: IRoute[], currentRoute: string): IRoute[] {
-    const routes:IRoute[]=[];
-    const stack=params.slice(0);
-    
-    while(stack.length>0){
-        let node=stack.shift();
-        if(currentRoute.split('&').includes(node!.path)){
-            routes.push(node!)
-        }
-        
-        if(node && node.routes){
-            stack.push(...node.routes)
-        }
-    }
-    return routes
-    // return params
-    //    // .filter(item => currentRoute.includes(item.path))
-    //     .map(item => {
-    //         if (currentRoute.includes(item.path)|| !item.routes) {
-    //             return item;
-    //         }
-    //         return {
-    //             ...item,
-    //             routes: matchRoute(item.routes, currentRoute)
-    //         };
-    //     });
-}
 
 
-console.log(matchRoute(routes,'/yuntu_ng/market/benefit_analysis&/yuntu_ng/market/benefit_analysis/brand_benefit_tag'));
+
+
 
 
 
