@@ -139,4 +139,5 @@ const readFun = (obj) => {
     return obj;
 };
 const res = readFun(readA);
+export {};
 // -- 装饰器
