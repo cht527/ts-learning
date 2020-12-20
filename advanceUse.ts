@@ -2,7 +2,7 @@
 /*
  * @Author: your name
  * @Date: 2019-12-11 14:53:12
- * @LastEditTime: 2020-06-01 17:59:19
+ * @LastEditTime: 2020-12-10 20:48:18
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /ts-learning/advanceUse.ts
@@ -184,6 +184,8 @@ type TRecord<K extends string,T>={
     [P in K]:T
 }
 
+
+
 const testRecordVaue:TRecord<TAnimal,TAnimalObj>={
     dog:{
         name:'dog',
@@ -228,6 +230,9 @@ interface TRoom{
 
 type TOmit<T,K>=Pick<T,TExclude<keyof T,K>>
 
+const getUserInfo = (a:number, b:number) => a+b;
+
+type UserInfo = ReturnType<typeof getUserInfo>
 
 const testOmit:TOmit<THouse,keyof TRoom>={
     loft:'l'
@@ -279,6 +284,9 @@ function getProps<T extends object,K extends keyof T>(obj:T,prop:K):T[K]{
 
 const prop=getProps(dataDemo,'prop1');
 
+type Partial<T> = {
+    [K in keyof T]?: T[K]
+}
 
 // 类型的拓宽是所有出现的空类型和未定义类型都被类型 any 替换。
 let aa=undefined;
@@ -327,4 +335,10 @@ const res=readFun<aAndB>(readA);
 
 // -- 装饰器
 
+
+const mixed = ['x',1]
+
+
+//使用方式1
+mixed.push(1) //(string|number)[] 更为合理
 

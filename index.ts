@@ -62,7 +62,12 @@ class Person{
     constructor(n:string){
         this.name=n;
     }
+    test = () => {
+        console.log(this);
+    }
     run():void{
+        console.log(this);
+        
         console.log(this.name)
     }
     getName():string{
@@ -80,9 +85,12 @@ class Chinese extends Person{
     
 }
 
+
+var person = new Person('person');
 var chinese=new Chinese('caohaitao');
 chinese.setName('cht');
 chinese.run();
+
 
 /* 
 public 类里面、外面、子类 
@@ -435,246 +443,18 @@ setData2('fanxing T2')
 
 // -----
 
-export interface IRoute {
-    path: string;
-    routes?: IRoute[];
-    Routes?: any;
-    component?: string;
-    redirect?: string;
-}
 
 
-let routes = [
-    // yuntu_ng
-    {
-        path: '/yuntu_ng',
-        // redirect:'/yuntu_ng/cdp',
-        component: '../layouts/index.tsx',
-        Routes: ['src/common/view/component/errorWrapper/errorWrapper'],
-        routes: [
-            { path: '/yuntu_ng', redirect: '/yuntu_ng/cdp' },
-            {
-                path: '/yuntu_ng/cdp',
-                component: './cdp/_layout.tsx', // 私有用户
-                Routes: ['src/pages/authorized'],
-                routes: [
-                    { path: '/yuntu_ng/cdp', redirect: '/yuntu_ng/cdp/user_distribution' },
-                    { path: '/yuntu_ng/cdp/', redirect: '/yuntu_ng/cdp/user_distribution' },
-                    {
-                        path: '/yuntu_ng/cdp/user_distribution',
-                        component: './cdp/user_distribution'
-                    },
-                    { path: '/yuntu_ng/cdp/user_relation', component: './cdp/user_relation' },
-                    { path: '/yuntu_ng/cdp/analysis/create', component: './cdp/analysis/create' },
-                    { path: '/yuntu_ng/cdp/analysis/detail', component: './cdp/analysis/detail' },
-                    {
-                        path: '/yuntu_ng/cdp/analysis/perspective',
-                        component: './cdp/analysis/perspective'
-                    },
-                    { path: '/yuntu_ng/cdp/analysis', component: './cdp/analysis' },
-                    { path: '/yuntu_ng/cdp/precipitation', component: './cdp/precipitation' },
-                    // {path: '/yuntu_ng/cdp/precipitation_analysis', component: './cdp/precipitation_analysis'},
-                    { path: '/yuntu_ng/cdp/merge', component: './cdp/merge' },
-                    { path: '/yuntu_ng/cdp/merge/detail', component: './cdp/merge/detail' }
-                ]
-            },
-            {
-                path: '/yuntu_ng/market',
-                component: './market/_layout.tsx', // 营销策略
-                Routes: ['src/pages/authorized'],
-                routes: [
-                    { path: '/yuntu_ng/market', redirect: '/yuntu_ng/market/brand_abstract' },
-                    { path: '/yuntu_ng/market/', redirect: '/yuntu_ng/market/brand_abstract' },
-                    {
-                        path: '/yuntu_ng/market/brand_abstract',
-                        component: './market/brand_abstract'
-                    },
-                    { path: '/yuntu_ng/market/op_analysis', component: './market/op_analysis' },
-                    {
-                        path: '/yuntu_ng/market/op_analysis/op_analysis_tag',
-                        component: './market/op_analysis/op_analysis_tag'
-                    },
-                    // {
-                    //     path: '/yuntu_ng/market/decision_analysis',
-                    //     component: './market/decision_analysis'
-                    // },
-                    {
-                        path: '/yuntu_ng/market/brand_analysis',
-                        component: './market/brand_analysis'
-                    },
-                    {
-                        path: '/yuntu_ng/market/brand_analysis/brand_perspective',
-                        component: './market/brand_analysis/brand_perspective'
-                    },
-                    {
-                        path: '/yuntu_ng/market/benefit_analysis',
-                        component: './market/benefit_analysis'
-                    },
-                    {
-                        path: '/yuntu_ng/market/benefit_analysis/brand_benefit_tag',
-                        component: './market/benefit_analysis/brand_benefit_tag'
-                    },
-                    {
-                        path: '/yuntu_ng/market/ip_analysis',
-                        component: './market/ip_analysis'
-                    },
-                    {
-                        path: '/yuntu_ng/market/ip_analysis/ip_perspective',
-                        component: './market/ip_analysis/ip_perspective'
-                    },
-                    {
-                        path: '/yuntu_ng/market/hot_analysis',
-                        component: './market/hot_analysis'
-                    },
-                    {
-                        path: '/yuntu_ng/market/hot_analysis/hot_perspective',
-                        component: './market/hot_analysis/hot_perspective'
-                    },
-                    {
-                        path: '/yuntu_ng/market/lyrical_analysis',
-                        component: './market/lyrical_analysis'
-                    },
-                    {
-                        path: '/yuntu_ng/market/lyrical_analysis/userPerspective',
-                        component:
-                            './market/lyrical_analysis/components/userPerspective/userPerspective'
-                    },
-                    {
-                        path: '/yuntu_ng/market/lyrical_analysis/contentPerspective',
-                        component: './market/lyrical_analysis/components/contentPerspective'
-                    },
-                    {
-                        path: '/yuntu_ng/market/lyrical_analysis/opinionPerspective',
-                        component: './market/lyrical_analysis/components/opinionPerspective'
-                    },
 
-                    // {
-                    //   path: '/yuntu_ng/market/lyrical_analysis/userPerspective',
-                    //   component: './market/lyrical_analysis/components/userPerspective',
-                    // },
-                    {
-                        path: '/yuntu_ng/market/list',
-                        component: './market/list'
-                    },
-                    {
-                        path: '/yuntu_ng/market/detail',
-                        component: './cdp/analysis/detail'
-                    },
-                    {
-                        path: '/yuntu_ng/market/perspective',
-                        component: './cdp/analysis/perspective'
-                    }
-                ]
-            },
-            {
-                path: '/yuntu_ng/evaluation',
-                component: './evaluation/_layout.tsx', // 价值评估
-                Routes: ['src/pages/authorized'],
-                routes: [
-                    {
-                        path: '/yuntu_ng/evaluation',
-                        redirect: '/yuntu_ng/evaluation/ad_evaluation'
-                    },
-                    {
-                        path: '/yuntu_ng/evaluation/ad_evaluation',
-                        component: './evaluation/marketing_effect'
-                    },
-                    {
-                        path: '/yuntu_ng/evaluation/custom_test',
-                        component: './evaluation/custom_test'
-                    },
-                    {
-                        path: '/yuntu_ng/evaluation/custom_test/target',
-                        component: './evaluation/custom_test/target'
-                    },
-                    {
-                        path: '/yuntu_ng/evaluation/custom_test/create',
-                        component: './evaluation/custom_test/create'
-                    },
-                    {
-                        path: '/yuntu_ng/evaluation/custom_test/report',
-                        component: './evaluation/custom_test/report'
-                    }
-                ]
-            },
 
-            // 首次资质认证
-            {
-                path: '/yuntu_ng/qualification_init',
-                component: './qualification_init/index.tsx',
-                routes: [
-                    { path: '/yuntu_ng/qualification_init', component: './qualification_init' }
-                ]
-            },
-            // 获取id页面
-            {
-                path: '/yuntu_ng/settings/account_description',
-                component: './account_description/index.tsx',
-                routes: [
-                    {
-                        path: '/yuntu_ng/settings/account_description',
-                        component: './account_description'
-                    }
-                ]
-            },
 
-            // 密码重置
-            {
-                path: '/yuntu_ng/reset_password',
-                component: './reset_password/index.tsx',
-                routes: [{ path: '/yuntu_ng/reset_password', component: './reset_password' }]
-            },
-            // 无权限展示页面
-            {
-                path: '/yuntu_ng/jurisdiction_page',
-                component: './jurisdiction_page/index.tsx',
-                routes: [{ path: '/yuntu_ng/jurisdiction_page', component: './jurisdiction_page' }]
-            },
-            {
-                path: '/yuntu_ng/registered_email',
-                component: './registered_email/index.tsx'
-            },
-            {
-                path: '/yuntu_ng/message/message_list',
-                component: './message/message_list' // 营销策略
-            },
-            {
-                path: '/yuntu_ng/message/message_detail',
-                component: './message/message_detail' // 营销策略
-            },
-            {
-                path: '/yuntu_ng/settings',
-                component: './settings/_layout.tsx', // 设置
-                Routes: ['src/pages/authorized'],
-                routes: [
-                    {
-                        path: '/yuntu_ng/settings/account_authorization',
-                        component: './settings/account_authorization'
-                    },
-                    {
-                        path: '/yuntu_ng/settings/personal_settings',
-                        component: './settings/personal_settings'
-                    },
-                    {
-                        path: '/yuntu_ng/settings/qualification',
-                        component: './settings/qualification'
-                    },
-                    {
-                        path: '/yuntu_ng/settings/team_settings',
-                        component: './settings/team_settings'
-                    }
-                ]
-            },
-            // 官网
-            {
-                path: '/yuntu_ng/login',
-                Routes: ['src/pages/authorized'],
-                component: './yuntu_page/homepage'
-            }
-        ]
-    },
-    { path: '/', redirect: '/yuntu_ng/login' }
-];
+
+
+
+
+
+
+
 
 
 

@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2019-12-11 14:53:12
- * @LastEditTime: 2020-06-01 17:59:19
+ * @LastEditTime: 2020-12-10 20:48:18
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /ts-learning/advanceUse.ts
@@ -105,6 +105,7 @@ const testRecordVaue = {
 };
 const testExclude = 1;
 const textExtract = 3; // or 2
+const getUserInfo = (a, b) => a + b;
 const testOmit = {
     loft: 'l'
 };
@@ -140,3 +141,7 @@ const readFun = (obj) => {
 };
 const res = readFun(readA);
 // -- 装饰器
+const mixed = ['x', 1];
+//使用方式1
+mixed.push(1); //(string|number)[] 更为合理
+export {};
