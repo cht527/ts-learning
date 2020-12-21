@@ -140,7 +140,6 @@ const readFun = (obj) => {
     return obj;
 };
 const res = readFun(readA);
-export {};
 // -- 装饰器
 const mixed = ['x', 1];
 //使用方式1
