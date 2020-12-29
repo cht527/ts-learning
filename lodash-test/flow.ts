@@ -18,9 +18,9 @@ function flow(...func:TFunc[]):TFunc{
           throw new TypeError('Expected a function')
         }
     }
-    return function(...args){
+    return (...args:number[]) =>{
         let idx = 0;
-        let result = length ?  func[index].call(this, args) : args[0];
+        let result = length ?  func[index].apply<TFunc,number[],any>(this, args) : args[0];
 
         while(++idx<length){
             result = func[index].call(this,result)

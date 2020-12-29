@@ -5,7 +5,7 @@ import * as _ from 'lodash';
 
 function filterObject(object:{[key:string]:any}, func:(...args:any[])=>any) {
     object = Object(object)
-    const result = []
+    const result:any[] = []
   
     Object.keys(object).forEach((key) => {
       const value = object[key]
