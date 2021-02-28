@@ -1,22 +1,30 @@
 /*
  * @Author: your name
  * @Date: 2020-05-27 16:07:50
- * @LastEditTime: 2020-05-27 16:33:52
+ * @LastEditTime: 2021-02-28 11:43:24
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /ts-learning/decorator.ts
  */ 
 
 
-import {testClass,dec} from './tools/decorator/dec';
-
-@testClass
-class Animal{
-    getName() {
-        console.log('n')
+function getProp(params:string):ClassDecorator{
+    return function (target:Function) {
+        target.prototype.job = params
     }
 }
 
-const ani=new Animal();
+@getProp('eat')
+class Animal1{
+    constructor(name:string){}
+    job: string;
+    getName() {
+        console.log(this.job)
+    }
+}
 
-console.log(ani);
+
+
+const ani=new Animal1('a');
+
+console.log(ani.getName());

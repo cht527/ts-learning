@@ -1,7 +1,8 @@
+"use strict";
 /*
  * @Author: your name
  * @Date: 2020-05-27 16:07:50
- * @LastEditTime: 2020-05-27 16:33:52
+ * @LastEditTime: 2021-02-28 11:43:24
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /ts-learning/decorator.ts
@@ -12,14 +13,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-import { testClass } from './tools/decorator/dec';
-let Animal = class Animal {
+function getProp(params) {
+    return function (target) {
+        target.prototype.job = params;
+    };
+}
+let Animal1 = class Animal1 {
+    constructor(name) { }
     getName() {
-        console.log('n');
+        console.log(this.job);
     }
 };
-Animal = __decorate([
-    testClass
-], Animal);
-const ani = new Animal();
-console.log(ani);
+Animal1 = __decorate([
+    getProp('eat')
+], Animal1);
+const ani = new Animal1('a');
+console.log(ani.getName());
