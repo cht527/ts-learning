@@ -84,6 +84,7 @@ const testRequiredValue = {
 };
 const testPartialValue = {
     a: 'avalue',
+    // b:'bvalue', 
 };
 const a = {
     a: 'avalue',
@@ -131,6 +132,8 @@ let aa = undefined;
 let bb = null;
 const testAnd = {
     name: 'a',
+    // age:1,
+    // weight:1
 };
 const readA = {
     a: 'd',
