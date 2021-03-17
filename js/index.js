@@ -258,3 +258,52 @@ let setData2 = function (value) {
 };
 setData2('fanxing T2');
 // -----
+let deck = {
+    suits: ["hearts", "spades", "clubs", "diamonds"],
+    cards: Array(52),
+    createCardPicker: function () {
+        // NOTE: the line below is now an arrow function, allowing us to capture 'this' right here
+        return () => {
+            let pickedCard = Math.floor(Math.random() * 52);
+            let pickedSuit = Math.floor(pickedCard / 13);
+            return { suit: this.suits[pickedSuit], card: pickedCard % 13 };
+        };
+    }
+};
+let cardPicker = deck.createCardPicker();
+let pickedCard = cardPicker();
+function getArg(arg) {
+    return arg;
+}
+var Gender;
+(function (Gender) {
+    Gender[Gender["Male"] = 0] = "Male";
+    Gender[Gender["Female"] = 1] = "Female";
+})(Gender || (Gender = {}));
+const perTest = [
+    {
+        name: 'aa',
+        age: 1,
+        gender: 3
+    },
+    {
+        name: 'bb',
+        age: 111,
+        gender: 333
+    }
+];
+function pluck(obj, keys) {
+    if (obj.length === 0 || keys.length === 0) {
+        return [];
+    }
+    return obj.map(item => {
+        let temp = {};
+        keys.reduce((val, key) => {
+            val[key] = item[key];
+            return val;
+        }, temp);
+        return temp;
+    });
+}
+console.log(pluck(perTest, ['name', 'age']));
+let keys;

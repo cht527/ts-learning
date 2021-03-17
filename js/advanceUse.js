@@ -50,12 +50,18 @@ console.log(isSomeType(testNum));
 ;
 ;
 let o1 = {
-    a: '1'
+    a: '1',
+    c: 1
 };
 let o2 = {
-    b: 2
+    b: 2,
+    a: '4'
 };
-let o3 = Object.assign({}, o1, o2);
+let o3 = {
+    a: 'd',
+    c: 1,
+    b: 0
+};
 console.log(o3);
 //  
 const testArr = [1, 2, 3, 4, 4, 2, 5, 3, 23, 3, 345, 3, 9, 2];
@@ -147,4 +153,6 @@ const res = readFun(readA);
 const mixed = ['x', 1];
 //使用方式1
 mixed.push(1); //(string|number)[] 更为合理
+const testArray = [1, 23];
+const testr = testArray.map(item => item + 1);
 export {};

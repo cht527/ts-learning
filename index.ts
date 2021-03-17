@@ -444,10 +444,79 @@ setData2('fanxing T2')
 // -----
 
 
+let deck = {
+    suits: ["hearts", "spades", "clubs", "diamonds"],
+    cards: Array(52),
+    createCardPicker: function() {
+        // NOTE: the line below is now an arrow function, allowing us to capture 'this' right here
+        return () => {
+            let pickedCard = Math.floor(Math.random() * 52);
+            let pickedSuit = Math.floor(pickedCard / 13);
+
+            return {suit: this.suits[pickedSuit], card: pickedCard % 13};
+        }
+    }
+}
+
+let cardPicker = deck.createCardPicker();
+let pickedCard = cardPicker();
 
 
 
+interface ILengthParam{
+    length:number
+}
 
+function getArg<T extends ILengthParam>(arg:T){    
+    return arg
+}
+
+enum Gender{
+    Male,
+    Female
+}
+
+interface Per{
+    name:string;
+    age:number;
+    gender: Gender
+}
+
+const perTest =[
+    {
+        name: 'aa',
+        age: 1,
+        gender: 3
+    },
+    {
+        name: 'bb',
+        age: 111,
+        gender: 333
+    }
+]
+function pluck<T,K extends keyof T>(obj:T[],keys:K[]):Partial<T>[]{
+    if(obj.length ===0 || keys.length===0){
+        return []
+    }
+    return obj.map(item=>{
+        let temp:Partial<T>={};
+        keys.reduce((val,key)=>{
+            val[key]=item[key];
+            return val
+        },temp);
+
+        return temp
+    })
+}
+
+console.log(pluck(perTest,['name','age']));
+
+
+
+interface Dictionary<T> {
+    [key: string]: T;
+  }
+let keys: keyof Dictionary<string>;
 
 
 

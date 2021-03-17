@@ -78,18 +78,27 @@ interface NumericDictionary<T> {
 
 // 交叉类型
 interface IObj1{
-    a:string
+    a:string,
+    c:number
 }
 interface IObj2{
-    b:number
+    b:number,
+    a:string
 }
 let o1:IObj1={
-    a:'1'
+    a:'1',
+    c:1
 }
 let o2:IObj2={
-    b:2
+    b:2,
+    a:'4'
 }
-let o3:IObj1 & IObj2=Object.assign({},o1,o2);
+let o3:IObj1 & IObj2={
+    a:'d',
+    c:1,
+    b:0
+
+};
 
 console.log(o3);
 
@@ -342,3 +351,7 @@ const mixed = ['x',1]
 //使用方式1
 mixed.push(1) //(string|number)[] 更为合理
 
+
+const testArray=[1,23];
+
+const testr = testArray.map(item=>item+1)
