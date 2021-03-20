@@ -1,4 +1,4 @@
-import {typeAssert, IsTypeEqual} from './typeassert';
+import {typeAssert, IsTypeEqual} from '../tools/typeassert';
 
 
 type TRequired<T>={

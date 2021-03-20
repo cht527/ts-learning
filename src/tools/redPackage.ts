@@ -7,7 +7,7 @@
  * @FilePath: /ts-learning/js/tools/redPackage.ts
  */
 
-class RedPackage{
+export class RedPackage{
     private num:number;
     private money:number;
     private remain:number=0;

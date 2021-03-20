@@ -8,7 +8,7 @@
  */
 
 
-class GetAllTags{
+export class GetAllTags{
     public tagObj: { [key: string]: number } = {};
     public stack:Array<Node>=[];
     constructor() {
