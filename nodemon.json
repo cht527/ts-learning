@@ -1,0 +1,15 @@
+{
+    "verbose": true,
+    "watch": ["./server/app.ts"],
+    "ignore": [],
+    "delay": 1000,
+    "execMap": {
+        "ts": "ts-node --files"
+    },
+    "env": {
+        "NODE_ENV": "development",
+        "NODE_OPTIONS": "--inspect=3000"
+    },
+    "ext": "ts",
+    "events": {}
+}

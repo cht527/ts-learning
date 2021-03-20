@@ -512,7 +512,6 @@ function pluck<T,K extends keyof T>(obj:T[],keys:K[]):Partial<T>[]{
 console.log(pluck(perTest,['name','age']));
 
 
-
 interface Dictionary<T> {
     [key: string]: T;
   }

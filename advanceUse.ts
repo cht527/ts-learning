@@ -343,15 +343,3 @@ const res=readFun<aAndB>(readA);
 
 
 // -- 装饰器
-
-
-const mixed = ['x',1]
-
-
-//使用方式1
-mixed.push(1) //(string|number)[] 更为合理
-
-
-const testArray=[1,23];
-
-const testr = testArray.map(item=>item+1)
