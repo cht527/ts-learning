@@ -1,10 +1,9 @@
-import { from } from "rxjs";
 import React ,{useEffect, useRef} from 'react';
 
-export default function useDom(id:string){
+export default function useDom(selector:string){
+    console.log('--dom --')
+
     const nodeRef = useRef<HTMLElement|null>(null);
-    useEffect(()=>{
-        nodeRef.current = document.getElementById(id);
-    },[])
+    nodeRef.current = document.querySelector(selector);
     return nodeRef.current
 }

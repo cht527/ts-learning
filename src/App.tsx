@@ -1,22 +1,54 @@
-import React, { useEffect, useRef } from 'react';
-import useDom from './hooks/dom';
+import React, { useEffect, useRef, useState } from 'react';
 import './App.css';
-import { fromEvent } from 'rxjs';
-
+import { fromEvent,merge } from 'rxjs';
+import { scan, throttleTime,map,filter, tap, mergeMap } from 'rxjs/operators';
 function App() {
-  const nodeRef = useRef<HTMLElement|null>(null);
-  
+
+  const addRef = useRef<HTMLElement|null>(null);
+
+  const inputRef = useRef<HTMLElement|null>(null);
+
+  const [list,setList] = useState<string[]>([]);
+
+  const updateList = (val:string) => {
+    setList(prev=>prev.concat([val]))
+  }
+
   useEffect(()=>{  
-    nodeRef.current = document.getElementById('btn') as HTMLButtonElement;
-    
-    fromEvent(nodeRef.current, 'click').subscribe(() => console.log('Clicked!'));
-    
+    addRef.current = document.getElementById('btn') as HTMLButtonElement;
+    inputRef.current = document.querySelector('.input-val') as HTMLInputElement;
+
+    const inputObservable =  fromEvent<KeyboardEvent>(inputRef.current,'keydown')
+    .pipe(
+      filter(e=> e.key === 'Enter')
+    );
+
+    const addObservable =fromEvent<MouseEvent>(addRef.current, 'click')
+   
+    const inputMerge = merge(inputObservable,addObservable);
+
+    const app$ = inputMerge.pipe(
+      map(()=> (inputRef.current as HTMLInputElement).value),
+      filter(value=>value!==''),
+      tap(value => {
+        updateList(value);
+        (inputRef.current as HTMLInputElement).value = ''
+      })
+    )
+
+    app$.subscribe();
   },[])
   
 
   return (
     <div className="App">
-      <button id="btn">test click</button>
+      <input type="text" className="input-val" />
+      <button id="btn">add</button>
+      <ul>
+        {
+          list.map(item=><li key={item}  >{`task: ${item}`}</li>)
+        }
+      </ul>
     </div>
   );
 }
