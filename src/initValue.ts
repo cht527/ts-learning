@@ -1,4 +1,5 @@
-import * as T from './interface/test.d';
+import * as T from './interface/test';
+
 
 
 const initValue:T.ITest={

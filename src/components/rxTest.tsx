@@ -1,8 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { fromEvent,merge } from 'rxjs';
 import { scan, throttleTime,map,filter, tap, mergeMap } from 'rxjs/operators';
-
-
 export default function RxTest(){
 
 
