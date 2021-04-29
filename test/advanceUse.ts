@@ -343,3 +343,18 @@ const res=readFun<aAndB>(readA);
 
 
 // -- 装饰器
+
+interface Foo {
+    foo: string;
+    name: string;
+  }
+  
+  interface Bar {
+    bar: string;
+    name: string;
+  }
+  
+  const sayHello = (obj: Foo | Bar) => {  };
+  
+  sayHello({ foo: "foo", name: "lolo" });
+  sayHello({ bar: "bar", name: "growth" });

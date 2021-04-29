@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import echarts from 'echarts/lib/echarts';
-function useGraphCharts(
+export default function useGraphCharts(
     ref: any,
     data: any,
     id: string,
