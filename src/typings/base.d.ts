@@ -1,3 +1,13 @@
+
+export type Without<T> = { [P in keyof T]?: undefined };
+
+// 异或
+export type XOR<T, U> = (Without<T> & U) | (Without<U> & T);
+
+// 假值
+export type Falsy = false | "" | 0 | null | undefined;
+
+
 export interface MapKV<T> {
     [key: string]: T | MapKV<T>;
 }
@@ -12,9 +22,8 @@ export type PowerPartial<T> = {
 
 export declare type UnionOmit<T, K> = T & Omit<K, keyof T>;
 
+// 基于值类型的Pick
 
-export type Without<T> = { [P in keyof T]?: undefined };
+export type PickByValue<T, ValueType> = Pick<T, {[key in keyof T]-? : T[key] extends ValueType ? key : never }[keyof T]>
 
-// 异或
-export type XOR<T, U> = (Without<T> & U) | (Without<U> & T);
 
